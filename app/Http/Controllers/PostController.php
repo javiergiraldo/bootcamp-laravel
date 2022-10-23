@@ -38,7 +38,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validamos los datos
+        $validated = $request->validate([
+            'title' => 'required|string|max:100',
+            'body' => 'required|string|max:255',
+        ]);
+
+        $request->user()->posts()->create($validated);
+
+        return redirect(route('posts.index'));
     }
 
     /**

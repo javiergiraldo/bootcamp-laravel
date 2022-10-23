@@ -12,6 +12,7 @@ export const Index = ({auth}) => {
 
     const submit = (e) => {
         e.preventDefault()
+        console.log(data)
         post(route('posts.store'), {onSuccess: ()=> reset() })
     }
 
@@ -21,9 +22,20 @@ export const Index = ({auth}) => {
         <div className='max-w-2xl mx-auto p-4 sm:p-6 lg:p-8'>
             <form onSubmit={submit}>
                 <input 
+                    value={data.title}
+                    onChange={e => setData('title', e.target.value)}
+                    type="text"
+                    placeholder='Title'
+                    autoFocus
+                    className="mb-3 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                  />
                  <InputError message={errors.title} className="mt-2"/>
                  <textarea 
+                 value={data.body}
+                 onChange={e => setData('body', e.target.value)}
+                 type="text"
+                 placeholder='Body'
+                 className="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                  >                    
                  </textarea>
                  <InputError message={errors.title} className="mt-2"/>
